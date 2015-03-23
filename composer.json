@@ -1,0 +1,30 @@
+{
+    "name": "droath/recurly_client",
+    "description": "Recurly REST API services.",
+    "keywords": ["recurly", "payment", "API"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Travis Tomka",
+            "email": "underoathosx@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "~5.2",
+        "symfony/serializer": "~2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    },
+    "autoload": {
+        "psr-4" : {
+            "RecurlyClient\\" : "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4" : {
+            "RecurlyClient\\Test\\" : "./tests"
+        }
+    }
+}
