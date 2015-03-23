@@ -1,5 +1,7 @@
-# Recurly Client
----
+Recurly Client
+================
+
+[![Build Status](https://travis-ci.org/droath/RecurlyClient.svg?branch=master)](https://travis-ci.org/droath/RecurlyClient)
 
 The Recurly Client library allows you to simply interact with the exposed RESTful API Services provided by [Recurly.com](https://recurly.com/).
 
