@@ -73,7 +73,7 @@ class Client
     {
         try {
             $response = $this->client->send($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new \RecurlyClient\Exception\RequestException(
                 $e->getMessage(),
                 $request,
