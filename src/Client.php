@@ -73,11 +73,10 @@ class Client
     {
         try {
             $response = $this->client->send($request);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new \RecurlyClient\Exception\RequestException(
                 $e->getMessage(),
                 $request,
-                $response,
                 $e
             );
         }
@@ -115,6 +114,16 @@ class Client
     public function http()
     {
         return $this->client;
+    }
+
+    /**
+     * Set the HTTP client.
+     *
+     * @param \GuzzleHttp\Client $client
+     */
+    public function setHttp(\GuzzleHttp\Client $client)
+    {
+        $this->client = $client;
     }
 
     /**

@@ -77,6 +77,28 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @depends testBuildRequest
+     * @expectedExceptionCode 200
+     * @expectedExceptionMessage Request Error
+     * @expectedException \RecurlyClient\Exception\RequestException
+     */
+    public function testSendThrowException($request)
+    {
+        $clientStub = $this
+            ->getMockBuilder('\GuzzleHttp\Client')
+            ->setMethods(['send'])
+            ->getMock();
+
+        $clientStub
+            ->expects($this->once())
+            ->method('send')
+            ->will($this->throwException(new \Exception('Request Error', 200)));
+        $this->client->setHttp($clientStub);
+
+        $response = $this->client->send($request);
+    }
+
+    /**
      * @covers ::getConfig
      */
     public function testConfigInstance()
