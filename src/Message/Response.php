@@ -22,6 +22,18 @@ class Response
     }
 
     /**
+     * Set the Guzzle response.
+     *
+     * @param \GuzzleHttp\Message\Response $response A request response.
+     */
+    public function setResponse(\GuzzleHttp\Message\Response $response)
+    {
+        $this->response = $response;
+
+        return $this;
+    }
+
+    /**
      * Retrieve the Guzzle response.
      *
      * @return \GuzzleHttp\Message\Response
@@ -65,16 +77,21 @@ class Response
      * Retrieve the response data object.
      *
      * @return \RecurlyClient\Format\ResponseData
+     * @throws \RecurlyClient\Exception\ResponseException
      */
     public function getData()
     {
         $response = $this->getResponse();
-
-        if (!$response instanceof \GuzzleHttp\Message\Response) {
-            throw new \Exception('Unknown response object received.');
+        try {
+            $xml = $response->xml();
+        } catch (\Exception $e) {
+            throw new \RecurlyClient\Exception\ResponseException(
+                $e->getMessage(),
+                $response,
+                $e
+            );
         }
-        $data = $response->xml();
 
-        return new \RecurlyClient\Message\ResponseData($data);
+        return new \RecurlyClient\Message\ResponseData($xml);
     }
 }
