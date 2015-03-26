@@ -3,7 +3,6 @@
 namespace RecurlyClient\Exception;
 
 use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
 
 class RequestException extends \RecurlyClient\Exception\Exception
 {
