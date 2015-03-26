@@ -2,6 +2,9 @@
 <testing>
   <item_1>example 1</item_1>
   <item_2>example 2</item_2>
-  <item_3>example 3</item_3>
+  <item_3>
+    <sub_item_1>example 3 sub 1</sub_item_1>
+    <sub_item_2>example 3 sub 2</sub_item_2>
+  </item_3>
   <item_4>example 4</item_4>
 </testing>
