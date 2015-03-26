@@ -11,6 +11,8 @@ We're using the PHP Guzzle library to construct the HTTP requests for the availa
 
 The PHP library depends on PHP 5.4 or higher.
 
+**NOTE:** Currently we don't support PHP:hhvm, due to HHVM not fully supporting the SimpleXMLIterator class.
+
 ## Installation
 
 ### Composer
