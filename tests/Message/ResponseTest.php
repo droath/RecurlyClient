@@ -9,13 +9,26 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->response = new \RecurlyClient\Message\Response(
-            new \GuzzleHttp\Message\Response('200')
+            new \RecurlyClient\Message\Request(
+                new \RecurlyClient\Message\RequestType(
+                    'action_name'
+                )
+            ),
+            new \GuzzleHttp\Message\Response(200)
         );
     }
 
     public function tearDown()
     {
         $this->response = null;
+    }
+
+    public function testGetRequest()
+    {
+        $this->assertInstanceOf(
+            '\RecurlyClient\Message\Request',
+            $this->response->getRequest()
+        );
     }
 
     public function testGetResponse()
@@ -39,6 +52,11 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testGetHeaders()
     {
         $this->assertInternalType('array', $this->response->getHeaders());
+    }
+
+    public function testIsSuccessful()
+    {
+       $this->assertTrue($this->response->isSuccessful());
     }
 
     public function testGetData()

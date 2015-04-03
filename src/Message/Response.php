@@ -5,7 +5,14 @@ namespace RecurlyClient\Message;
 class Response
 {
     /**
-     * The Guzzle response.
+     * Recurly request.
+     *
+     * @var \RecurlyClient\Message\Request
+     */
+    protected $request;
+
+    /**
+     * Guzzle response.
      *
      * @var \GuzzleHttp\Message\Response
      */
@@ -16,8 +23,11 @@ class Response
      *
      * @param \GuzzleHttp\Message\Response $response
      */
-    public function __construct(\GuzzleHttp\Message\Response $response)
-    {
+    public function __construct(
+        \RecurlyClient\Message\Request $request,
+        \GuzzleHttp\Message\Response $response
+    ) {
+        $this->request  = $request;
         $this->response = $response;
     }
 
@@ -31,6 +41,16 @@ class Response
         $this->response = $response;
 
         return $this;
+    }
+
+    /**
+     * Retrieve the Recurly request.
+     *
+     * @return \RecurlyClient\Message\Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
     }
 
     /**
@@ -71,6 +91,17 @@ class Response
     public function getHeaders()
     {
         return $this->response->getHeaders();
+    }
+
+    /**
+     * Determine if the response was successful.
+     *
+     * @return boolean
+     */
+    public function isSuccessful()
+    {
+        return (boolean) $this->getRequest()->getType()
+            ->getExpectedCode() == $this->getStatusCode();
     }
 
     /**

@@ -26,6 +26,13 @@ class RequestType
     protected $paths;
 
     /**
+     * Request type expected status code.
+     *
+     * @var integer
+     */
+    protected $expectedCode;
+
+    /**
      * Request type service.
      *
      * @var \RecurlyClient\ServiceAbstract
@@ -35,15 +42,21 @@ class RequestType
     /**
      * Setup request type.
      *
-     * @param string $action The request action.
-     * @param string $method The request method.
-     * @param array  $paths  The request paths.
+     * @param string  $action       Request action.
+     * @param string  $method       Request method.
+     * @param array   $paths        Request paths.
+     * @param integer $expectedCode Request expected status code.
      */
-    public function __construct($action, $method = null, array $paths = [])
-    {
-        $this->action = $action;
-        $this->method = $method;
-        $this->paths  = $paths;
+    public function __construct(
+        $action,
+        $method = 'GET',
+        array $paths = [],
+        $expected_code = 200
+    ) {
+        $this->action       = $action;
+        $this->method       = $method;
+        $this->paths        = $paths;
+        $this->expectedCode = $expected_code;
     }
 
     /**
@@ -56,6 +69,18 @@ class RequestType
     public function setPaths(array $paths)
     {
         $this->paths = array_merge($this->paths, $paths);
+
+        return $this;
+    }
+
+    /**
+     * Set the request expected status code.
+     *
+     * @param integer $status_code
+     */
+    public function setExpectedCode($status_code)
+    {
+        $this->expectedCode = $status_code;
 
         return $this;
     }
@@ -102,6 +127,16 @@ class RequestType
     public function getPaths()
     {
         return !empty($this->paths) ? $this->paths : [];
+    }
+
+    /**
+     * Retrieve the request type expected status code.
+     *
+     * @return integer
+     */
+    public function getExpectedCode()
+    {
+        return (int) $this->expectedCode;
     }
 
     /**

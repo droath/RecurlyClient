@@ -17,11 +17,11 @@ class PlanAddon extends \RecurlyClient\Service\Plan
                 // A list or a single add-on to a plan.
                 new RequestType('lookup', 'GET', $paths),
                 // Add an add-on to a plan.
-                new RequestType('create', 'POST', $paths),
+                new RequestType('create', 'POST', $paths, 201),
                 // Update an add-on from a plan.
                 new RequestType('update', 'PUT', $paths),
                 // Remove an add-on from a plan.
-                new RequestType('delete', 'DELETE', $paths),
+                new RequestType('delete', 'DELETE', $paths, 204),
             ]
         );
 

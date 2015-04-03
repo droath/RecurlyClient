@@ -18,7 +18,7 @@ class AccountAdjustment extends \RecurlyClient\Service\Account
                 new RequestType('list', 'GET', $paths),
                 // Creates a one-time charge on an account. Charges are not
                 // invoiced or collected immediately.
-                new RequestType('create', 'POST', $paths),
+                new RequestType('create', 'POST', $paths, 201),
             ]
         );
 

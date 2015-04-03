@@ -5,6 +5,13 @@ namespace RecurlyClient\Message;
 class Request
 {
     /**
+     * Request type.
+     *
+     * @var \RecurlyClient\Message\RequestType
+     */
+    protected $type;
+
+    /**
      * Request options.
      *
      * @var array
@@ -12,20 +19,13 @@ class Request
     protected $options;
 
     /**
-     * Service request type.
-     *
-     * @var \RecurlyClient\Message\RequestType
-     */
-    protected $requestType;
-
-    /**
      * Setup the service request.
      *
-     * @param \RecurlyClient\Message\RequestType $request_type A service request type object.
+     * @param \RecurlyClient\Message\type $type A service request type.
      */
-    public function __construct(\RecurlyClient\Message\RequestType $request_type)
+    public function __construct(\RecurlyClient\Message\RequestType $type)
     {
-        $this->requestType = $request_type;
+        $this->type = $type;
     }
 
     /**
@@ -41,9 +41,21 @@ class Request
         $this->setBody($entity);
         $this->setQuery($query);
 
-        return new \RecurlyClient\Message\Response(
-            $this->client()->send($this->request())
+        $response = $this->client()->send(
+            $this->request()
         );
+
+        return new \RecurlyClient\Message\Response($this, $response);
+    }
+
+    /**
+     * Get the request type.
+     *
+     * @return \RecurlyClient\Message\RequestType
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -122,7 +134,7 @@ class Request
      */
     protected function service()
     {
-        return $this->requestType->service();
+        return $this->type->service();
     }
 
     /**
@@ -143,9 +155,9 @@ class Request
     protected function request()
     {
         $request = $this->client()
-            ->buildRequest($this->requestType->getMethod(), $this->options);
+            ->buildRequest($this->type->getMethod(), $this->options);
 
-        $request->setPath($request->getPath() . '/' . $this->requestType->getFullPath());
+        $request->setPath($request->getPath() . '/' . $this->type->getFullPath());
 
         return $request;
     }

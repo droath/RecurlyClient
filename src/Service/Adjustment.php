@@ -16,7 +16,7 @@ class Adjustment extends \RecurlyClient\ServiceAbstract implements \RecurlyClien
                 // Returns a list of the accounts on your site.
                 new RequestType('lookup', 'GET', [':id']),
                 // Returns a list of the accounts on your site.
-                new RequestType('delete', 'DELETE', [':id']),
+                new RequestType('delete', 'DELETE', [':id'], 204),
             ]
         );
 

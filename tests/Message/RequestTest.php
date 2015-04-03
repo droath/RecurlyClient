@@ -65,6 +65,14 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('serialize_string', $options);
     }
 
+    public function testGetType()
+    {
+        $this->assertInstanceOf(
+            '\RecurlyClient\Message\RequestType',
+            $this->request->getType()
+        );
+    }
+
     public function testOptons()
     {
         $this->request->option('testKey', 'testValue');

@@ -17,13 +17,13 @@ class Plan extends \RecurlyClient\ServiceAbstract implements \RecurlyClient\Serv
                 // Lists all your active subscription plans.
                 new RequestType('list', 'GET'),
                 // Create a new subscription plan.
-                new RequestType('create', 'POST'),
+                new RequestType('create', 'POST', [], 201),
                 // Lookup a plan's details.
                 new RequestType('lookup', 'GET', $paths),
                 // Update the pricing or details for a plan.
                 new RequestType('update', 'PUT', $paths),
                 // Deleting a plan makes it inactive.
-                new RequestType('delete', 'DELETE', $paths),
+                new RequestType('delete', 'DELETE', $paths, 204),
             ]
         );
 

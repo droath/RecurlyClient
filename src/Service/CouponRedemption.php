@@ -15,7 +15,7 @@ class CouponRedemption extends \RecurlyClient\Service\Coupon
             [
                 // Redeem a coupon for a customer after their initial
                 // subscription, or in anticipation of a future subscription.
-                new RequestType('redeem', 'POST', [':id', 'redeem']),
+                new RequestType('redeem', 'POST', [':id', 'redeem'], 201),
             ]
         );
 

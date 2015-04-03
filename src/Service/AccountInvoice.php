@@ -22,7 +22,7 @@ class AccountInvoice extends \RecurlyClient\Service\Account
                 // An account is automatically invoiced when the subscription
                 // renews. However, there are times when it is appropriate to
                 // invoice an account before the renewal.
-                new RequestType('create', 'POST', $paths),
+                new RequestType('create', 'POST', $paths, 201),
             ]
         );
 

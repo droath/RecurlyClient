@@ -24,6 +24,12 @@ class RequestTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('path3', $this->type->getPaths());
     }
 
+    public function testSetGetExpectedCode()
+    {
+        $this->type->setExpectedCode(201);
+        $this->assertEquals(201, $this->type->getExpectedCode());
+    }
+
     public function testSetGetService()
     {
         $service = $this

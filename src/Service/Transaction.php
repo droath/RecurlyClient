@@ -16,7 +16,7 @@ class Transaction extends \RecurlyClient\ServiceAbstract implements \RecurlyClie
                 // Returns a list of all the transactions.
                 new RequestType('list', 'GET'),
                 // Create transaction against given account.
-                new RequestType('create', 'POST'),
+                new RequestType('create', 'POST', [], 201),
                 // Lists details for an individual transaction.
                 new RequestType('lookup', 'GET', [':id']),
             ]

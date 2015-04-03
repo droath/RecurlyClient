@@ -15,7 +15,7 @@ class Subscription extends \RecurlyClient\ServiceAbstract implements \RecurlyCli
             [
                 new RequestType('list', 'GET'),
                 // Create a new subscription.
-                new RequestType('create', 'POST'),
+                new RequestType('create', 'POST', [], 201),
                 // Lookup or return a list of all the subscriptions.
                 new RequestType('lookup', 'GET', [':id']),
                 // Request an update to a subscription that takes place
@@ -27,7 +27,7 @@ class Subscription extends \RecurlyClient\ServiceAbstract implements \RecurlyCli
                 // Returns a preview for a subscription change applied to an
                 // account without committing a subscription change or posting
                 // an invoice.
-                new RequestType('mockPreview', 'Post', [':id', 'preview']),
+                new RequestType('mockPreview', 'Post', [':id', 'preview'], 201),
                 // Cancel a subscription so it remains active and then expires
                 // at the end of the current bill cycle
                 new RequestType('cancel', 'PUT', [':id', 'cancel']),
@@ -42,7 +42,7 @@ class Subscription extends \RecurlyClient\ServiceAbstract implements \RecurlyCli
                 new RequestType('postpone', 'PUT', [':id', 'postpone']),
                 // Returns a preview for a new subscription applied to an
                 // account.
-                new RequestType('preview', 'PUT', ['preview']),
+                new RequestType('preview', 'POST', ['preview'], 201),
             ]
         );
 

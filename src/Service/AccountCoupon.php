@@ -18,7 +18,7 @@ class AccountCoupon extends \RecurlyClient\Service\Account
                 // an account
                 new RequestType('lookup', 'GET', $paths),
                 // Remove a coupon from an account before it expires.
-                new RequestType('delete', 'DELETE', $paths),
+                new RequestType('delete', 'DELETE', $paths, 204),
             ]
         );
 

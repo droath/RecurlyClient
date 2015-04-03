@@ -19,7 +19,7 @@ class AccountBilling extends \RecurlyClient\Service\Account
                 // Updates an account's billing information.
                 new RequestType('update', 'PUT', $paths),
                 // You may remove any stored billing information for an account.
-                new RequestType('clear', 'DELETE', $paths),
+                new RequestType('clear', 'DELETE', $paths, 204),
             ]
         );
 
